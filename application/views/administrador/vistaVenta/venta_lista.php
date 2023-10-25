@@ -10,7 +10,7 @@
                     <ul class="nav navbar-right panel_toolbox">
                       
                       <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><b>OPCIONES</b></a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="<?php echo base_url();?>index.php/venta/agregarFormulario">Agregar Venta</a>
                             <a class="dropdown-item" href="<?php echo base_url();?>index.php/venta/deshabilitados">deshabilitados</a>
