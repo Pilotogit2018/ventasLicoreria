@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Proveedor extends CI_Controller {
+class Reporte extends CI_Controller {
    
     public function lista()
 	{
@@ -16,7 +16,7 @@ class Proveedor extends CI_Controller {
 				$this->load->view('administrador/cuerpoLte/cabecera');
 				$this->load->view('administrador/cuerpoLte/menuSuperior');
 				$this->load->view('administrador/cuerpoLte/menuLateral');
-				$this->load->view('administrador/vistaVenta/venta_lista',$data);//vista de la categoria
+				$this->load->view('administrador/vistaReporte/lista_reporte',$data);//vista de la categoria
 				$this->load->view('administrador/cuerpoLte/pie');
 			}
 			else
