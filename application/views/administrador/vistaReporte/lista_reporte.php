@@ -68,7 +68,7 @@
                                     
                                 </div>
                                 <div class="card-footer bg-lcv1 font-weight-bold text-center">
-                                    <?php echo form_open_multipart('reporte/producto');?>
+                                    <?php echo form_open_multipart('reportes/producto');?>
                                     <button type="submit" class="btn btn-round btn-outline-dark d-grid gap-2"> Ver Reporte  <i class="glyphicon glyphicon-arrow-right"></i></button>
                                     <?php echo form_close();?>
                                 </div>
