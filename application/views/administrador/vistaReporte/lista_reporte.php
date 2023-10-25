@@ -3,7 +3,6 @@
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3><i class="fa fa-file-text"></i> REPORTES</h3>
       </div>
     </div>
 
@@ -31,30 +30,72 @@
           <div class="x_content">
             <div class="row">
                 <!-- REPORTES -->  
+                
                 <!-- Cantidad Ventas -->
                 <div class="col-xl-5 col-md-6 mb-4">
-                    <div class="card bg-lcv1 shadow h-100">
-                        <div class="card-body bg-png font-weight-bold">    
-                            <div class="h2 mb-0 font-weight-bold"><h3 class="fa fa-file-text x2 text-light"> Reporte de venta General</h3></div>
-                        </div>
-                        <div class="card-footer bg-png font-weight-bold">
-                            <?php echo form_open_multipart('reporte/general');?>
-                            <button type="submit" class="btn btn-round btn-danger text-white"><i class="glyphicon glyphicon-arrow-right"></i> Ir a Reporte</button>
-                            <?php echo form_close();?>
+                    <div class="card border-dark mb-3 " style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Reporte General</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                                    
+                                </div>
+                                <div class="card-footer bg-lcv1 font-weight-bold text-center">
+                                    <?php echo form_open_multipart('reportes/reporteGeneral');?>
+                                    <button type="submit" class="btn btn-round btn-outline-dark d-grid gap-2"> Ver Reporte  <i class="glyphicon glyphicon-arrow-right"></i></button>
+                                    <?php echo form_close();?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Cantidad Productos -->
                 <div class="col-xl-5 col-md-6 mb-4">
-                    <div class="card border-png shadow h-100">
-                        <div class="card-body bg-lcv1 font-weight-bold">    
-                            <div class="h2 mb-0 font-weight-bold"><h3 class="fa fa-file-text x2 text-light"> Productos mas vendidos</h3></div>
+                    <div class="card border-dark mb-3 " style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Reporte General</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    
+                                </div>
+                                <div class="card-footer bg-lcv1 font-weight-bold text-center">
+                                    <?php echo form_open_multipart('reporte/producto');?>
+                                    <button type="submit" class="btn btn-round btn-outline-dark d-grid gap-2"> Ver Reporte  <i class="glyphicon glyphicon-arrow-right"></i></button>
+                                    <?php echo form_close();?>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-footer bg-lcv1 font-weight-bold">
-                            <?php echo form_open_multipart('reporte/producto');?>
-                            <button type="submit" class="btn btn-round btn-danger"><i class="glyphicon glyphicon-arrow-right"></i> Ir a Reporte</button>
-                            <?php echo form_close();?>
+                    </div>
+                </div>
+
+
+                <div class="col-xl-5 col-md-6 mb-4">
+                    <div class="card border-dark mb-3 " style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                            <img src="..." class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Reporte General</h5>
+                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                    
+                                </div>
+                                <div class="card-footer bg-lcv1 font-weight-bold text-center">
+                                    <?php echo form_open_multipart('reporte/producto');?>
+                                    <button type="submit" class="btn btn-round btn-outline-dark d-grid gap-2"> Ver Reporte  <i class="glyphicon glyphicon-arrow-right"></i></button>
+                                    <?php echo form_close();?>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
