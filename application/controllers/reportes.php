@@ -22,6 +22,23 @@ class Reportes extends CI_Controller {
 			$this->load->view('logins/login',$data);//vista del login
 		}
     }
+
+	// REPORTE GENERAL DE VENTAS
+    public function reporteGeneral()
+    {
+        $lista = $this->reporte_model->ventashistorial();
+        $data['fecha'] = $lista;
+
+        $lista = $this->reporte_model->reporteTotal();
+        $data['total'] = $lista;
+
+        $this->load->view('inc/cabecera');
+        $this->load->view('inc/menulateral');
+        $this->load->view('inc/menusuperior');
+        $this->load->view('reporte/reportes_generales',$data);
+        $this->load->view('inc/creditos');	
+        $this->load->view('inc/pie');
+    }
  
 
 
