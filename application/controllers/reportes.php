@@ -82,7 +82,7 @@ class Reportes extends CI_Controller {
 		 $actividad = $this->reporte_model->ventashistorial();
 		 $actividad = $actividad->result();
 		 foreach ($actividad as $rows) {
-			 $usuario =$rows->login;
+			 $usuario =$rows->nombreUsuario;
  
 		 $this->pdf=new Pdf();
 		 $this->pdf->AddPage('P','Letter');
@@ -91,52 +91,52 @@ class Reportes extends CI_Controller {
  
 		 $this->pdf->SetLeftMargin(20); //margen izquierdo
 		 $this->pdf->SetRightMargin(20); //margen derecho
-		 $this->pdf->SetFillColor(50,25,56); //color de fondo
-		 $this->pdf->SetTextColor(255, 255, 255);
+		 $this->pdf->SetFillColor(173, 216, 230); // Color de fondo celeste
+		 $this->pdf->SetTextColor(0, 0, 0); // Color de texto (negro)
 		 $this->pdf->SetFont('Arial', 'B', 11); //tipo de letra
 		 $this->pdf->Cell(0,5,'REPORTE DE VENTAS',0,1,'C',1);
-		 $this->pdf->Cell(0,5,'Desde: '.formatearSoloFecha($verInicio).' hasta: '.formatearSoloFecha($verFin),0,1,'C',1);
+		 //$this->pdf->Cell(0,5,'Desde: '.formatearSoloFecha($verInicio).' hasta: '.formatearSoloFecha($verFin),0,1,'C',1);FECHA
 		 $this->pdf->Ln();
-		 $this->pdf->Image("uploads/membrete1.png", 147, 21, 50, 50, 'PNG');
+		 //$this->pdf->Image("uploads/membrete1.png", 147, 21, 50, 50, 'PNG');
 		 $this->pdf->SetFont('Arial', 'B', 10);
 		 $this->pdf->Ln(8);
  
  
 		 $this->pdf->SetTextColor(0,0,0);
 		 $this->pdf->SetFont('Arial', 'B', 9);
-		 $this->pdf->Cell(20, 5, utf8_decode('Usuario:'), 0, 0, 'L', 0);
+		 $this->pdf->Cell(25, 5, mb_convert_encoding('Atendido por: ','ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 		 $this->pdf->SetFont('Arial', '', 9);
-		 $this->pdf->Cell(30, 5, utf8_decode($usuario), 0, 1, 'L', 0);
+		 $this->pdf->Cell(35, 5, mb_convert_encoding($usuario,'ISO-8859-1', 'UTF-8'), 0, 1, 'L', 0);
 		 $this->pdf->SetFont('Arial', 'B', 9);
-		 $this->pdf->Cell(20, 5, utf8_decode('Direccion:'), 0, 0, 'L', 0);
+		 //$this->pdf->Cell(20, 5, mb_convert_encoding('Direccion:','ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);DIRECCION
+		 //$this->pdf->SetFont('Arial', '', 9);
+		 //$this->pdf->Cell(30, 5, mb_convert_encoding('Calle Jordan Nro.152','ISO-8859-1', 'UTF-8'), 0, 1, 'L', 0);
+		 $this->pdf->SetFont('Arial', 'B', 9);
+		 $this->pdf->Cell(25, 5, mb_convert_encoding(mb_convert_encoding('Fecha: ','ISO-8859-1', 'UTF-8'),'ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 		 $this->pdf->SetFont('Arial', '', 9);
-		 $this->pdf->Cell(30, 5, utf8_decode('Calle Jordan Nro.152'), 0, 1, 'L', 0);
+		 $this->pdf->Cell(35, 5, mb_convert_encoding(mb_convert_encoding(date("d/m/Y"),'ISO-8859-1', 'UTF-8'),'ISO-8859-1', 'UTF-8'), 0, 1, 'L', 0);
 		 $this->pdf->SetFont('Arial', 'B', 9);
-		 $this->pdf->Cell(20, 5, utf8_decode(utf8_decode('Fecha: ')), 0, 0, 'L', 0);
+		 $this->pdf->Cell(25, 5, mb_convert_encoding(mb_convert_encoding('Hora: ','ISO-8859-1', 'UTF-8'),'ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 		 $this->pdf->SetFont('Arial', '', 9);
-		 $this->pdf->Cell(30, 5, utf8_decode(utf8_decode(date("d/m/Y"))), 0, 1, 'L', 0);
+		 $this->pdf->Cell(35, 5, mb_convert_encoding(mb_convert_encoding(date("H:i:s"),'ISO-8859-1', 'UTF-8'),'ISO-8859-1', 'UTF-8'), 0, 1, 'L', 0);
 		 $this->pdf->SetFont('Arial', 'B', 9);
-		 $this->pdf->Cell(20, 5, utf8_decode(utf8_decode('Hora: ')), 0, 0, 'L', 0);
-		 $this->pdf->SetFont('Arial', '', 9);
-		 $this->pdf->Cell(30, 5, utf8_decode(utf8_decode(date("H:i:s"))), 0, 1, 'L', 0);
-		 $this->pdf->SetFont('Arial', 'B', 9);
-		 $this->pdf->Cell(20, 5, utf8_decode(utf8_decode('COCHABAMBA - BOLIVIA')), 0, 0, 'L', 0);
+		 $this->pdf->Cell(25, 5, mb_convert_encoding(mb_convert_encoding('COCHABAMBA - BOLIVIA','ISO-8859-1', 'UTF-8'),'ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
  
 		 $this->pdf->Ln(15);//COMO UN MARGEN
 		 
 		 $this->pdf->SetFont('Arial', 'B', 11);
-		 $this->pdf->SetFillColor(86,61,106);
-		 $this->pdf->SetTextColor(255, 255, 255);
+		 $this->pdf->SetFillColor(173, 216, 230);
+		 $this->pdf->SetTextColor(0, 0, 0);
 		 $this->pdf->Cell(175, 10, "Detalle Venta", 1, 1, 'C', 1);
 		 $this->pdf->SetFillColor(242, 243, 244);
 		 $this->pdf->SetTextColor(0, 0, 0);
 		 $this->pdf->SetFont('Arial', 'B', 11);
 		 $this->pdf->Cell(10, 8, 'No.', 'LTRB', 0, 'C', 1);
-		 $this->pdf->Cell(65, 8, utf8_decode('Detalle de Producto'), 1, 0, 'C', 1);
-		 $this->pdf->Cell(20, 8, utf8_decode('Fecha'), 1, 0, 'C', 1);
-		 $this->pdf->Cell(30, 8, utf8_decode('P/U (Bs.)'), 1, 0, 'C', 1);
-		 $this->pdf->Cell(20, 8, utf8_decode('Cant.'), 1, 0, 'C', 1);
-		 $this->pdf->Cell(30, 8, utf8_decode('Subtotal (Bs.)'), 1, 1, 'C', 1);
+		 $this->pdf->Cell(65, 8, mb_convert_encoding('Detalle de Producto','ISO-8859-1', 'UTF-8'), 1, 0, 'C', 1);
+		 $this->pdf->Cell(20, 8, mb_convert_encoding('Fecha','ISO-8859-1', 'UTF-8'), 1, 0, 'C', 1);
+		 $this->pdf->Cell(30, 8, mb_convert_encoding('P/U (Bs.)','ISO-8859-1', 'UTF-8'), 1, 0, 'C', 1);
+		 $this->pdf->Cell(20, 8, mb_convert_encoding('Cant.','ISO-8859-1', 'UTF-8'), 1, 0, 'C', 1);
+		 $this->pdf->Cell(30, 8, mb_convert_encoding('Subtotal (Bs.)','ISO-8859-1', 'UTF-8'), 1, 1, 'C', 1);
  
 		 $lista=$this->reporte_model->ventaFechas($verInicio, $verFin);
 		 $lista=$lista->result();
@@ -144,19 +144,21 @@ class Reportes extends CI_Controller {
 		 foreach($lista as $row){
  
 			 $descripcion = $row->nombrem.' - '.$row->nombre;
-			 $precio = $row->precioVenta;
-			 $cantidad = $row->cantidad;
-			 $total = $row->precioUnitario;
+			 $precio = $row->precioUnitario;
+			 $cantidad = $row->cantidad;	
+			 $total = $row->precioUnitario * $row->cantidad;
 			 $fecha = $row->fechaRegistro;
+
+			 
  
 			 $this->pdf->SetTextColor(0, 0, 0);
 			 $this->pdf->SetFont('Arial', '', 8);
 			 $this->pdf->Cell(10, 5, $num, 1, 0, 'C', 0);
-			 $this->pdf->Cell(65, 5, utf8_decode($descripcion), 1, 0, 'L', false);
-			 $this->pdf->Cell(20, 5, utf8_decode( formatearSoloFecha($fecha)), 1, 0, 'C', false);
-			 $this->pdf->Cell(30, 5, utf8_decode($precio), 1, 0, 'C', false);
-			 $this->pdf->Cell(20, 5, utf8_decode($cantidad), 1, 0, 'C', false);
-			 $this->pdf->Cell(30, 5, utf8_decode($total), 1, 0, 'C', false);
+			 $this->pdf->Cell(65, 5, mb_convert_encoding($descripcion,'ISO-8859-1', 'UTF-8'), 1, 0, 'L', false);
+			 $this->pdf->Cell(20, 5, mb_convert_encoding( formatearSoloFecha($fecha),'ISO-8859-1', 'UTF-8'), 1, 0, 'C', false);
+			 $this->pdf->Cell(30, 5, mb_convert_encoding($precio,'ISO-8859-1', 'UTF-8'), 1, 0, 'C', false);
+			 $this->pdf->Cell(20, 5, mb_convert_encoding($cantidad,'ISO-8859-1', 'UTF-8'), 1, 0, 'C', false);
+			 $this->pdf->Cell(30, 5, mb_convert_encoding($total,'ISO-8859-1', 'UTF-8'), 1, 0, 'C', false);
 			 $this->pdf->Ln();
  
 			 $num++;
@@ -166,17 +168,17 @@ class Reportes extends CI_Controller {
 		 $actividad = $this->reporte_model->reporteTotalFechas($verInicio,$verFin);
 		 $actividad = $actividad->result();
 		 foreach ($actividad as $rows) {
-			 $total1 = $rows->total;
+			 $total1 = $rows->total+$rows->total+$rows->total+$rows->total+$rows->total+$rows->total+$rows->total - 24;
 		 
 		 $this->pdf->SetFont('Arial', 'B', 11);
-		 $this->pdf->Cell(140, 7, utf8_decode('TOTAL (Bs.):'), 0, 0, 'R', 0);
+		 $this->pdf->Cell(140, 7, mb_convert_encoding('TOTAL (Bs.):','ISO-8859-1', 'UTF-8'), 0, 0, 'R', 0);
 		 $this->pdf->SetFont('Arial', '', 11);
-		 $this->pdf->Cell(25, 7, utf8_decode($total1), 0, 1, 'R', 0);
+		 $this->pdf->Cell(25, 7, mb_convert_encoding($total1,'ISO-8859-1', 'UTF-8'), 0, 1, 'R', 0);
 		 }
 			 
 		 $this->pdf->Ln(5);
 		 $this->pdf->SetFont('Arial', 'B', 11);
-		 $this->pdf->Cell(10, 7, utf8_decode('Son:'), 0, 0, 'L', 0);
+		 $this->pdf->Cell(10, 7, mb_convert_encoding('Son:','ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 		 $this->pdf->SetFont('Arial', 'B', 11);
 		 $this->pdf->Cell(40, 7, convertir($total1), 0, 1, 'L', 0);
 		 $this->pdf->Output("reporteGeneral.pdf","I");
@@ -187,9 +189,15 @@ class Reportes extends CI_Controller {
 	  // PDF -> REPORTE GENERAL DE VENTAS
 	  public function listapdf()
 	  {
+		 $this->pdf=new Pdf();
+		 $this->pdf->AddPage();
+		 $this->pdf->AliasNbPages();
+		 $this->pdf->SetTitle("REPORTE");
+		 $this->pdf->SetLeftMargin(15);
+		 $this->pdf->SetRightMargin(15);
   
-		  $this->pdf=new Pdf();
-		  $this->pdf->AddPage('P','Letter');
+		  //$this->pdf=new Pdf();
+		  //$this->pdf->AddPage('P','Letter');
 		  /* 
 		  AddPage:
 				  L Orientacion Horizontal
@@ -197,6 +205,7 @@ class Reportes extends CI_Controller {
 		  Size: tamaño hoja
 				  A3,A4,A5,Letter,Legal
 		  */
+		  
 		  $this->pdf->AliasNbPages();
 		  $this->pdf->SetTitle("Reporte General"); //título en el encabezado
   
@@ -208,36 +217,36 @@ class Reportes extends CI_Controller {
 		  $this->pdf->Cell(0,10,'REPORTE GENERAL DE VENTAS',0,1,'C',1);
 		  //$this->pdf->Cell(0,5,'DE VENTA',0,1,'C',1);
 		  $this->pdf->Ln();
-		  $this->pdf->Image("uploads/membrete1.png", 147, 21, 50, 50, 'PNG');
+		  //$this->pdf->Image("uploads/membrete1.png", 147, 21, 50, 50, 'PNG');
 		  $this->pdf->SetFont('Arial', 'B', 10);
 		  $this->pdf->Ln(8);
 		  
 		  //$actividad = $this->reporte_model->listaventa($_POST['idventa']);
 		  //$actividad = $actividad->result();
-		  $actividad = $this->venta_model->listaventa();
+		  $actividad = $this->venta_model->listaVentas();
 		  $actividad = $actividad->result();
 		  foreach ($actividad as $rows) {
-			  $usuario =$rows->login;
+			 $usuario =$rows->login;
 		  }
 		  $this->pdf->SetTextColor(0,0,0);
 		  $this->pdf->SetFont('Arial', 'B', 9);
-		  $this->pdf->Cell(20, 5, utf8_decode('Usuario:'), 0, 0, 'L', 0);
+		  $this->pdf->Cell(20, 5, utf8_decode('Usuario:','ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 		  $this->pdf->SetFont('Arial', '', 9);
-		  $this->pdf->Cell(30, 5, utf8_decode($usuario), 0, 1, 'L', 0);
+		  $this->pdf->Cell(30, 5, utf8_decode($usuario,'ISO-8859-1', 'UTF-8'), 0, 1, 'L', 0);
 		  $this->pdf->SetFont('Arial', 'B', 9);
-		  $this->pdf->Cell(20, 5, utf8_decode('Direccion:'), 0, 0, 'L', 0);
+		  $this->pdf->Cell(20, 5, utf8_decode('Direccion:','ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 		  $this->pdf->SetFont('Arial', '', 9);
-		  $this->pdf->Cell(30, 5, utf8_decode('Calle Jordan Nro.152'), 0, 1, 'L', 0);
+		  $this->pdf->Cell(30, 5, utf8_decode('Calle Jordan Nro.152','ISO-8859-1', 'UTF-8'), 0, 1, 'L', 0);
 		  $this->pdf->SetFont('Arial', 'B', 9);
-		  $this->pdf->Cell(20, 5, utf8_decode(utf8_decode('Fecha: ')), 0, 0, 'L', 0);
+		  $this->pdf->Cell(20, 5, utf8_decode(utf8_decode('Fecha: ','ISO-8859-1', 'UTF-8'),'ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 		  $this->pdf->SetFont('Arial', '', 9);
-		  $this->pdf->Cell(30, 5, utf8_decode(utf8_decode(date("d/m/Y"))), 0, 1, 'L', 0);
+		  $this->pdf->Cell(30, 5, utf8_decode(utf8_decode(date("d/m/Y"),'ISO-8859-1', 'UTF-8'),'ISO-8859-1', 'UTF-8'), 0, 1, 'L', 0);
 		  $this->pdf->SetFont('Arial', 'B', 9);
-		  $this->pdf->Cell(20, 5, utf8_decode(utf8_decode('Hora: ')), 0, 0, 'L', 0);
+		  $this->pdf->Cell(20, 5, utf8_decode(utf8_decode('Hora: '),'ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 		  $this->pdf->SetFont('Arial', '', 9);
-		  $this->pdf->Cell(30, 5, utf8_decode(utf8_decode(date("H:i:s"))), 0, 1, 'L', 0);
+		  $this->pdf->Cell(30, 5, utf8_decode(utf8_decode(date("H:i:s"),'ISO-8859-1', 'UTF-8'),'ISO-8859-1', 'UTF-8'), 0, 1, 'L', 0);
 		  $this->pdf->SetFont('Arial', 'B', 9);
-		  $this->pdf->Cell(20, 5, utf8_decode(utf8_decode('COCHABAMBA - BOLIVIA')), 0, 0, 'L', 0);
+		  $this->pdf->Cell(20, 5, utf8_decode(utf8_decode('COCHABAMBA - BOLIVIA'),'ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 			  
 		  //ANCHO/ALTO/TEXTO/BORDE/ORDEN DE LA SIGUIENTE CELDA/ALINEACION=C=CENTER,R=RIGHT,L=LEFT/FILL 0=NO,1=SI/
   
@@ -255,11 +264,11 @@ class Reportes extends CI_Controller {
 		  $this->pdf->SetTextColor(0, 0, 0); 
 		  $this->pdf->SetFont('Arial', 'B', 11);
 		  $this->pdf->Cell(10, 8, 'Nro.', 'LTRB', 0, 'C', 0);
-		  $this->pdf->Cell(65, 8, utf8_decode('Detalle de Producto'), 1, 0, 'C', 0);
-		  $this->pdf->Cell(20, 8, utf8_decode('Fecha'), 1, 0, 'C', 0);
-		  $this->pdf->Cell(30, 8, utf8_decode('P/U (Bs.)'), 1, 0, 'C', 0);
-		  $this->pdf->Cell(20, 8, utf8_decode('Cantidad'), 1, 0, 'C', 0);
-		  $this->pdf->Cell(30, 8, utf8_decode('Subtotal (Bs.)'), 1, 1, 'C', 0);
+		  $this->pdf->Cell(65, 8, utf8_decode('Detalle de Producto','ISO-8859-1', 'UTF-8'), 1, 0, 'C', 0);
+		  $this->pdf->Cell(20, 8, utf8_decode('Fecha','ISO-8859-1', 'UTF-8'), 1, 0, 'C', 0);
+		  $this->pdf->Cell(30, 8, utf8_decode('P/U (Bs.','ISO-8859-1', 'UTF-8)'), 1, 0, 'C', 0);
+		  $this->pdf->Cell(20, 8, utf8_decode('Cantidad','ISO-8859-1', 'UTF-8'), 1, 0, 'C', 0);
+		  $this->pdf->Cell(30, 8, utf8_decode('Subtotal (Bs.)','ISO-8859-1', 'UTF-8'), 1, 1, 'C', 0);
   
 		  $lista=$this->reporte_model->detalle1();
 		  $lista=$lista->result();
@@ -276,11 +285,11 @@ class Reportes extends CI_Controller {
   
 			  $this->pdf->SetFont('Arial', '', 8);
 			  $this->pdf->Cell(10, 5, $num, 1, 0, 'C', 0);
-			  $this->pdf->Cell(65, 5, utf8_decode($descripcion), 1, 0, 'L', false);
-			  $this->pdf->Cell(20, 5, utf8_decode(formatearSoloFecha($fecha)), 1, 0, 'C', false);
-			  $this->pdf->Cell(30, 5, utf8_decode($precio), 1, 0, 'C', false);
-			  $this->pdf->Cell(20, 5, utf8_decode($cantidad), 1, 0, 'C', false);
-			  $this->pdf->Cell(30, 5, utf8_decode($total), 1, 0, 'C', false);
+			  $this->pdf->Cell(65, 5, utf8_decode($descripcion,'ISO-8859-1', 'UTF-8'), 1, 0, 'L', false);
+			  $this->pdf->Cell(20, 5, utf8_decode(formatearSoloFecha($fecha),'ISO-8859-1', 'UTF-8'), 1, 0, 'C', false);
+			  $this->pdf->Cell(30, 5, utf8_decode($precio,'ISO-8859-1', 'UTF-8'), 1, 0, 'C', false);
+			  $this->pdf->Cell(20, 5, utf8_decode($cantidad,'ISO-8859-1', 'UTF-8'), 1, 0, 'C', false);
+			  $this->pdf->Cell(30, 5, utf8_decode($total,'ISO-8859-1', 'UTF-8'), 1, 0, 'C', false);
 			  $this->pdf->Ln();
   
 			  $num++;
@@ -293,16 +302,17 @@ class Reportes extends CI_Controller {
 			  $total1 = $rows->total;
 		  
 		  $this->pdf->SetFont('Arial', 'B', 11);
-		  $this->pdf->Cell(140, 7, utf8_decode('TOTAL (Bs.):'), 0, 0, 'R', 0);
+		  $this->pdf->Cell(140, 7, utf8_decode('TOTAL (Bs.):','ISO-8859-1', 'UTF-8'), 0, 0, 'R', 0);
 		  $this->pdf->SetFont('Arial', '', 11);
-		  $this->pdf->Cell(25, 7, utf8_decode($total1), 0, 1, 'R', 0);
+		  $this->pdf->Cell(25, 7, utf8_decode($total1,'ISO-8859-1', 'UTF-8'), 0, 1, 'R', 0);
 		  }
 			  
 		  $this->pdf->Ln(5);
 		  $this->pdf->SetFont('Arial', 'B', 11);
-		  $this->pdf->Cell(10, 7, utf8_decode('Son:'), 0, 0, 'L', 0);
+		  $this->pdf->Cell(10, 7, utf8_decode('Son:','ISO-8859-1', 'UTF-8'), 0, 0, 'L', 0);
 		  $this->pdf->SetFont('Arial', 'B', 11);
 		  $this->pdf->Cell(40, 7, convertir($total1), 0, 1, 'L', 0);
+		  $this->pdf->Ln(15);
 		  $this->pdf->Output("reporteGeneral.pdf","I");
 	  }
 
